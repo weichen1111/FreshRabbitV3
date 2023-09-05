@@ -8,13 +8,13 @@
   <RouterView />
   
   <!-- 测试scss自动导入 -->
-  <div class="test">
+  <!-- <div class="test">
     test scss
-  </div>
+  </div> -->
 </template>
 
 <style scoped lang="scss">
-.test{
-  color: $priceColor;
-}
+// .test{
+//   color: $priceColor;
+// }
 </style>
