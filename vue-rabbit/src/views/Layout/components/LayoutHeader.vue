@@ -1,23 +1,9 @@
 <script setup>
-// 导入写好的Layout函数
-import { getCategoryAPI } from '@/apis/layout'
+import { useCategoryStore } from '@/stores/category'
 
-// 导入 onMounted, ref 
-import { onMounted, ref } from 'vue'
+// 使用pinia中的数据
 
-// 准备响应式数据
-const categoryList = ref([])
-
-// 编写一个获取数据的函数
-const getCategory = async () => {
-    const res = await getCategoryAPI()
-    categoryList.value = res.result
-}
-
-//生命周期调用函数
-onMounted(() => {
-    getCategory()
-})
+const catgoryStore = useCategoryStore()
 
 </script>
 
@@ -28,7 +14,7 @@ onMounted(() => {
                 <RouterLink to="/">小兔鲜</RouterLink>
             </h1>
             <ul class="app-header-nav">
-              <li class="home" v-for="item in categoryList" :key="item.id">
+              <li class="home" v-for="item in catgoryStore.categoryList" :key="item.id">
                 <RouterLink to="/">{{ item.name }}</RouterLink>
               </li>
             </ul>
