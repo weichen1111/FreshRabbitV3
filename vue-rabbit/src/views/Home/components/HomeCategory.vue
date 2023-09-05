@@ -1,3 +1,4 @@
+<!-- 左侧导航窗格 -->
 <script setup>
 import { useCategoryStore } from '@/stores/category'
 
