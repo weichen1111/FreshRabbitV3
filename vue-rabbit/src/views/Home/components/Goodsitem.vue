@@ -1,4 +1,4 @@
-
+//goooditem的封装
 <script setup>
 defineProps({
     goods: {
