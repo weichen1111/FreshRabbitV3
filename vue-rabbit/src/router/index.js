@@ -10,6 +10,10 @@ import Layout from '@/views/Layout/index.vue'
 import Home from '@/views/Home/index.vue'
 // 导入Category 组件
 import Category from '@/views/Category/index.vue'
+// 定位到定位到SubCategory组件
+import SubCategory from '@/views/SubCategory/index.vue'
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +32,10 @@ const router = createRouter({
         {
           path: 'category/:id',
           component: Category
+        },
+        {
+          path: 'category/sub/:id', 
+          component: SubCategory
         }
       ]
     },
