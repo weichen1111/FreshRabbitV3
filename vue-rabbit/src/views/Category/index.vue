@@ -1,5 +1,6 @@
 <script setup>
 // 导入接口函数
+import { getBannerAPI } from '@/apis/home'
 import { getCategoryAPI } from "@/apis/category";
 import {onMounted, ref} from 'vue'
 //组件内获取路由参数
@@ -15,6 +16,19 @@ const getCategory =async() =>{
 
 onMounted(()=> getCategory())
 
+//获取Banner
+const bannerList = ref([])
+
+const getBanner = async () => {
+    const res = await getBannerAPI({
+            distributionSite: '2'
+    })
+    // console.log(res)
+    bannerList.value = res.result
+}
+
+onMounted(() => getBanner())
+
 </script>
 
 <template>
@@ -27,6 +41,17 @@ onMounted(()=> getCategory())
                     <el-breadcrumb-item>{{ categoryData.name }}</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
+
+            <!-- 轮播图 -->
+            <div class="home-banner">
+                <el-carousel height="500px">
+                    <el-carousel-item v-for="item in bannerList" :key="item.id">
+                        <img :src="item.imgUrl"
+                        alt="">
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
+
         </div>
     </div>
 </template>
@@ -108,6 +133,20 @@ onMounted(()=> getCategory())
 
     .bread-container {
         padding: 25px 0;
+    }
+}
+.home-banner {
+    width: 1240px;
+    height: 500px;
+    // position: absolute;
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    z-index: 98;
+
+    img {
+        width: 100%;
+        height: 500px;
     }
 }
 </style>
