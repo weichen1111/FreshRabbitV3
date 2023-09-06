@@ -4,18 +4,27 @@ import GoodsItem from '../Home/components/Goodsitem.vue'
 import { getBannerAPI } from '@/apis/home'
 import { getCategoryAPI } from "@/apis/category";
 import {onMounted, ref} from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router'
 //组件内获取路由参数
 import {useRoute} from "vue-router"
 
 //获取数据
 const categoryData = ref([])
 const route = useRoute()
-const getCategory =async() =>{
-    const res =await getCategoryAPI(route.params.id)
+const getCategory =async(id = route.params.id) =>{
+    const res =await getCategoryAPI(id)
     categoryData.value =res.result
 }
-
 onMounted(()=> getCategory())
+
+
+//监听路由，路由参数变化时，分类数据接口重新发送
+onBeforeRouteUpdate((to)=>{
+    console.log("分类页面路由发生变化")
+
+    getCategory(to.params.id)
+})
+
 
 //获取Banner
 const bannerList = ref([])
@@ -27,7 +36,6 @@ const getBanner = async () => {
     // console.log(res)
     bannerList.value = res.result
 }
-
 onMounted(() => getBanner())
 
 </script>

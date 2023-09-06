@@ -19,7 +19,10 @@ onMounted(() => catgoryStore.getCategory())
     <LayoutFixed />
     <LayoutNav />
     <LayoutHeader />
-    <!-- 设置二级路由出口 -->
-    <RouterView/>
+    <!-- 1.设置二级路由出口,添加一个key破坏复用机制，强制重建 -->
+    <!-- <RouterView :key="$route.fullPath"/> -->
+
+    <!-- 2.设置二级路由出口,在分类窗口（Category->index）监听路由配置 -->
+    <RouterView />
     <LayoutFooter />
 </template> 
