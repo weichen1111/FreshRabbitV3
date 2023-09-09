@@ -12,6 +12,10 @@ import Home from '@/views/Home/index.vue'
 import Category from '@/views/Category/index.vue'
 // 定位到定位到SubCategory组件
 import SubCategory from '@/views/SubCategory/index.vue'
+// 定位到定位到Detail组件
+import Detail from '@/views/Detail/index.vue'
+
+
 
 
 
@@ -36,6 +40,10 @@ const router = createRouter({
         {
           path: 'category/sub/:id', 
           component: SubCategory
+        },
+        {
+          path: 'detail/:id',
+          component: Detail
         }
       ]
     },
@@ -43,7 +51,12 @@ const router = createRouter({
       path: '/login',
       component: Login
     }
-  ]
+  ],
+  //路由行为的配置项
+  scrollBehavior(){
+    return {top:0}
+  
+  }
 })
 
 export default router
