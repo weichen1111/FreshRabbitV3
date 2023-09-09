@@ -1,5 +1,6 @@
 <script setup>
 // 引入detail接口
+import DetailHot from './components/DetailHot.vue';
 import { getDetail } from '@/apis/detail'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -126,7 +127,10 @@ onMounted(() => getGoods())
                         </div>
                         <!-- 24热榜+专题推荐 -->
                         <div class="goods-aside">
-
+                            <!-- 24热榜 -->
+                           <DetailHot />
+                           <!-- 周热榜 -->
+                           <DetailHot />
                         </div>
                     </div>
                 </div>
