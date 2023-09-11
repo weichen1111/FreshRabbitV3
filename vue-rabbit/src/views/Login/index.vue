@@ -19,12 +19,31 @@ const rules = {
     agree: [
         {
             validator: (rule, value, callback) => {
-                console.log(value);
+                // console.log(value);
                 // 自定义校验规则
                 return value ? callback() : new Error('请勾选协议')
             }
         }
     ]
+}
+
+// 获取表单实例，统一校验
+const formRef =ref(null)
+const doLogin =() =>{
+    // 调用函数方法
+    formRef.value.validator(async (valid)=>{
+        // valid:所有表单都通过校验，才为true
+        console.log(valid);
+        // 以valid做为判断条件 如果通过校验才执行登录逻辑
+        if (valid) {
+            // TODO LOGIN
+            // await loginAPI({ account, password })
+            // // 1. 提示用户
+            // ElMessage({ type: 'success', message: '登录成功' })
+            // // 2. 跳转首页
+            // router.replace({ path: '/' })
+        }
+    })
 }
 </script>
 
@@ -50,7 +69,7 @@ const rules = {
                 </nav>
                 <div class="account-box">
                     <div class="form">
-                        <el-form :model="from" :rules="rules" label-position="right" label-width="60px" status-icon>
+                        <el-form ref="formRef" :model="from" :rules="rules" label-position="right" label-width="60px" status-icon>
                             <el-form-item prop="account" label="账户">
                                 <el-input v-model="from.account"/>
                             </el-form-item>
@@ -62,7 +81,7 @@ const rules = {
                                     我已同意隐私条款和服务条款
                                 </el-checkbox>
                             </el-form-item>
-                            <el-button size="large" class="subBtn">点击登录</el-button>
+                            <el-button size="large" class="subBtn" @click="doLogin">点击登录</el-button>
                         </el-form>
                     </div>
                 </div>
