@@ -10,6 +10,9 @@ import '@/styles/common.scss'
 // 引入懒加载指令插件且注册
 import { lazyPlugin } from '@/directives'
 
+//引入全局组件插件
+import { componentPlugin } from '@/components'
+
 // // 测试接口函数
 // import { getCategoryAPI } from '@/apis/textAPI'
 // getCategoryAPI().then(res => {
@@ -22,6 +25,7 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
+app.use(componentPlugin)
 app.use(lazyPlugin)
 
 app.mount('#app')
