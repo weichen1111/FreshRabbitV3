@@ -10,10 +10,12 @@ import Layout from '@/views/Layout/index.vue'
 import Home from '@/views/Home/index.vue'
 // 导入Category 组件
 import Category from '@/views/Category/index.vue'
-// 定位到定位到SubCategory组件
+// 定位到定位到SubCategory
 import SubCategory from '@/views/SubCategory/index.vue'
 // 定位到定位到Detail组件
 import Detail from '@/views/Detail/index.vue'
+// CartList
+import CartList from '@/views/CartList/index.vue'
 
 
 
@@ -44,6 +46,10 @@ const router = createRouter({
         {
           path: 'detail/:id',
           component: Detail
+        },
+        {
+          path: 'cartlist',
+          component: CartList
         }
       ]
     },
