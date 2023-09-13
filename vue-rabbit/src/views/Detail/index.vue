@@ -34,17 +34,20 @@ const countChange=(count) =>{
 // 添加购物车
 const addCart = () =>{
     if(skuObj.skuId){
+        // console.log(goods.value.mainPictures[0]);
         //规格已选择--->触发action
         cartStore.addCart({
             id:goods.value.id,
             name:goods.value.name,
-            picture:goods.value.picture,
+            picture:goods.value.mainPictures[0],
             price:goods.value.price,
             count:count.value,
             skuId:skuObj.skuId,
             attrsText:skuObj.specsText,
             selected:true
-        })
+        },
+        ElMessage.warning('添加成功')
+        )
     }else{
         //规格没有选择  提示用户选择规格
         ElMessage.warning('请选择规格')
