@@ -10,17 +10,20 @@ export const useCartStore = defineStore('cart',()=>{
     const userStore = useUserStore()
     const isLogin = computed(() => userStore.userInfo.token)
 
-    // 1.定价state --cartList
     // 1.定义state --cartList
     const cartList = ref([])
+    //获取最新购物车列表action   封装优化
+    const updateNewList =async() =>{
+        const res = await FindNewCartListAPI()
+        cartList.value = res.result
+    }
     // 2.定义action -- addCart
     const addCart = async (goods)=>{
         const { skuId, count } = goods
         if (isLogin.value){
             //登录了-----添加购物车逻辑
             await insertCartAPI({ skuId, count })
-            const res = await FindNewCartListAPI()
-            cartList.value = res.result
+            updateNewList()
 
         }else{
             //本地逻辑
@@ -45,8 +48,7 @@ export const useCartStore = defineStore('cart',()=>{
         if(isLogin.value){
             //调用接口实现接口购物车的删除功能
             await delCartAPI([skuId])
-            const res = await FindNewCartListAPI()
-            cartList.value = res.result
+            updateNewList()
         }else{
             //
             // 思路：
