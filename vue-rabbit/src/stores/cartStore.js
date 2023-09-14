@@ -60,6 +60,11 @@ export const useCartStore = defineStore('cart',()=>{
         
     }
 
+    //退出登录清除本地购物车数据
+    const clearCart =() =>{
+        cartList.value = []
+    }
+
     // 计算属性
     // 1.总数量  所有相count之和
     const allCount = computed(() =>cartList.value.reduce((a,c) => a+c.count, 0))
@@ -96,7 +101,8 @@ export const useCartStore = defineStore('cart',()=>{
         addCart,
         delCart,
         singleCheck,
-        allCheck
+        allCheck,
+        clearCart
     }
 }, {
     persist: true,
