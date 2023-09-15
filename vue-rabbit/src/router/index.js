@@ -16,6 +16,10 @@ import SubCategory from '@/views/SubCategory/index.vue'
 import Detail from '@/views/Detail/index.vue'
 // CartList
 import CartList from '@/views/CartList/index.vue'
+// Checkout
+import Checkout from '@/views/Checkout/index.vue'
+
+
 
 
 
@@ -50,6 +54,10 @@ const router = createRouter({
         {
           path: 'cartlist',
           component: CartList
+        },
+        {
+          path:'checkout',
+          component: Checkout
         }
       ]
     },
