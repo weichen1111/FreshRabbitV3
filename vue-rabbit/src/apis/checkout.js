@@ -8,3 +8,14 @@ export const getCheckoutInfoAPI = () => {
         url: '/member/order/pre'
     })
 }
+
+//获取订单接口
+
+export const createOrderAPI = (data) => {
+    return request({
+        url: '/member/order',
+        method: 'post',
+        data
+    })
+
+}
