@@ -20,6 +20,10 @@ import CartList from '@/views/CartList/index.vue'
 import Checkout from '@/views/Checkout/index.vue'
 //Pay
 import Pay from '@/views/Pay/index.vue'
+//PayBack
+import PayBack from '@/views/Pay/PayBack.vue'
+
+
 
 
 
@@ -66,6 +70,10 @@ const router = createRouter({
         {
           path:'pay',
           component: Pay
+        },
+        {
+          path:'paycallback',
+          component: PayBack
         }
       ]
     },
