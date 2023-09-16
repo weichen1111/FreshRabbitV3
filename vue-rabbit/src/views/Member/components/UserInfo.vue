@@ -1,5 +1,18 @@
 <script setup>
-const userStore = {}
+//导入用户数据
+import { useUserStore } from '@/stores/user'
+import { getLikeListAPI } from '@/apis/user'
+import { onMounted, ref } from 'vue';
+import GoodsItem from '@/views/Home/components/Goodsitem.vue'
+
+const userStore = useUserStore()
+
+const likeList = ref([])
+const getLikeList =async() =>{
+    const res = await getLikeListAPI({limit :4})
+    likeList.value = res.result
+}
+onMounted(() => getLikeList())
 </script>
 
 <template>
@@ -7,7 +20,8 @@ const userStore = {}
         <!-- 用户信息 -->
         <div class="user-meta">
             <div class="avatar">
-                <img :src="userStore.userInfo?.avatar" />
+                <!-- //此处接口文档数据错误 -->
+                <img src="@/assets/images/logo.png"/>
             </div>
             <h4>{{ userStore.userInfo?.account }}</h4>
         </div>
@@ -32,7 +46,7 @@ const userStore = {}
                 <h4 data-v-bcb266e0="">猜你喜欢</h4>
             </div>
             <div class="goods-list">
-                <!-- <GoodsItem v-for="good in likeList" :key="good.id" :good="good" /> -->
+                <GoodsItem v-for="good in likeList" :key="good.id" :goods="good" />
             </div>
         </div>
     </div>
